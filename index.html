@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Şifre Oluşturucu</h1>
+
+    <label>Şifre Uzunluğu:
+      <input type="number" id="length" min="4" max="32" value="12">
+    </label>
+
+    <label>
+      <input type="checkbox" id="lowercase" checked> Küçük Harf
+    </label>
+
+    <label>
+      <input type="checkbox" id="uppercase" checked> Büyük Harf
+    </label>
+
+    <label>
+      <input type="checkbox" id="numbers" checked> Sayılar
+    </label>
+
+    <label>
+      <input type="checkbox" id="symbols"> Semboller
+    </label>
+
+    <button id="generate">Şifre Oluştur</button>
+
+    <div id="result">...</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
