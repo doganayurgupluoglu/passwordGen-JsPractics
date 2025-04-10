@@ -1,7 +1,8 @@
 // Buton
 const generateBtn = document.getElementById('generate');
+const copyBtn = document.getElementById('copy');
 
-// Sonucun yazdiralacağı yer
+// Sonucun yazdıralacağı yer
 const resultEl = document.getElementById('result');
 
 // Ayar Elemenleri
@@ -19,29 +20,53 @@ const symbolChars = "!@#$%^&*()_+{}[]|:;<>,.?/~`-=";
 
 
 
+
+
+
 generateBtn.addEventListener("click" , () => {
-
-  
-
   let characterPool = "";
-
-  if (lowercaseEl.checked) characterPool += lowercaseChars;
-  if (uppercaseEl.checked) characterPool += uppercaseChars;
-  if (numbersEl.checked) characterPool += numberChars;
-  if (symbolsEl.checked) characterPool += symbolChars;
+  if(lowercaseEl.checked) characterPool += lowercaseChars;
+  if(uppercaseEl.checked) characterPool += uppercaseChars;
+  if(numbersEl.checked) characterPool += numberChars;
+  if(symbolsEl.checked) characterPool += symbolChars;
   
-  const length = parseInt(lengthEl.value);
-  if (isNaN(length) || length < 4 || length > 32) {
-    resultEl.innerHTML = `<span style="color: red; font-weight: bold;">Lütfen şifre uzunluğunu 4 ile 32 arasında girin!</span>`;
+  let length = parseInt(lengthEl.value);
+
+  if(characterPool === "") {
+    resultEl.innerHTML = `<span style="color: red; font-weight: bold;">En az bir seçenek seçmelisiniz!</span>`;
     return;
   }
-  
+
+  if(isNaN(length) || length < 4 || length > 32) {
+    resultEl.innerHTML = `<span style="color: red; font-weight: bold;">Lütfen şifre uzunluğunu 4 ile 32 arasında girin!</span>`;
+    return;
+  };
   let password = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characterPool.length);
-    password += characterPool[randomIndex];
-    
-  }
   
-  resultEl.textContent = password;  
+  for(let i = 0; i < length; i++){
+    let randomIndex = Math.floor(Math.random() * characterPool.length);
+    password += characterPool[randomIndex];
+  };
+  resultEl.textContent = password;
+
+});
+
+copyBtn.addEventListener("click" , () => {
+
+  let copiedPassword = resultEl.textContent;
+
+  if (!copiedPassword || copiedPassword.includes("Lütfen")) {
+    alert("Kopyalanacak bir şifre yok.");
+    return;
+  }
+  navigator.clipboard.writeText(copiedPassword)  
+  .then(() => {
+    copyBtn.innerText = `Kopyalandı!`;
+    setTimeout(() => {
+      copyBtn.innerText = "Kopyala";
+    }, 1500);
+  })
+  .catch(() => {
+    alert("Kopyalama başarısız oldu.");
+  });
 })
