@@ -5,6 +5,9 @@ Bu proje basit bir şifre oluşturucu uygulamasıdır. Kullanıcı, şifre uzunl
 ## 📷 Görsel
 
 ![Uygulama Görseli](./ss.png)
+## Canlı Demo
+
+👉 [https://password-gen-js-practics.vercel.app/](https://password-gen-js-practics.vercel.app/)
 
 ## ✨ Özellikler
 
